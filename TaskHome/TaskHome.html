@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lection 2 List</title>
+  </head>
+  <body>
+    <div id="hello-vue" class="demo">
+      <button @click="sort1">По возрастнию</button>
+      <button @click="sort2">По убыванию</button>
+      <ul>
+        <li v-for="item in products" :key="index">
+          название: {{item.name}}, цена:{{item.price}}
+        </li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      const HelloVueApp = {
+        data() {
+          return {
+            products: [
+              { name: "product1", price: 10 },
+              { name: "product2", price: 14 },
+              { name: "product3", price: 8 },
+              { name: "product4", price: 4 },
+              { name: "product5", price: 9 },
+            ],
+          };
+        },
+        methods: {
+          sort1() {
+            this.products.sort((a, b) => {
+              if (a.price > b.price) return 1;
+              else if (a.price < b.price) return -1;
+              else return 0;
+            });
+          },
+          sort2() {
+            this.products.sort((a, b) => {
+              if (a.price > b.price) return -1;
+              else if (a.price < b.price) return 1;
+              else return 0;
+            });
+          },
+        },
+      };
+
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

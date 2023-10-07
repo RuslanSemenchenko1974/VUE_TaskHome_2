@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task2</title>
+</head>
+<body>
+  <p>2. Есть список элементов. Пользователь может добавлять новые элементы списка с текстом “Новый элемент списка” нажав на кнопку "Добавить". 
+    3. *Дополнительное задание: При клике на элемент списка он должен быть удален. (по желанию)</p>
+    <div id="hello-vue">
+        <button @click="addItem"> Добавить </button>
+        <ul id="array-rendering">
+            <li v-for="item in items" @click = "deleteItem(item)">
+              {{ item }}
+            </li>
+          </ul>
+          
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+        /*
+        2. Есть список элементов. Пользователь может добавлять новые элементы списка с текстом “Новый элемент списка” нажав на кнопку "Добавить". 
+        3. *Дополнительное задание: При клике на элемент списка он должен быть удален. (по желанию)
+        */
+      const HelloVueApp = {
+        data() {
+          return {
+            items: [
+               'item1','item2','item3'
+            ],
+            count:0,
+          };
+        },
+        methods: { 
+            addItem(){
+                this.count++;
+                this.items.push(`Новый элемент списка ${this.count}`)
+            },
+            deleteItem(item){
+                let index = this.items.indexOf(item);
+                this.items.splice(index,1);
+            }
+        },
+      };
+
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+</body>
+</html>
